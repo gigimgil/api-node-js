@@ -16,6 +16,7 @@ module.exports = {
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Lista de usuários', 
+                itens:rows.length,
                 dados: rows
             });
         } catch (error) {
