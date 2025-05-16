@@ -1,12 +1,12 @@
 const express = require('express'); 
 const router = express.Router(); 
 
-const UsuariosController = require('../controllers/usuarios'); 
+const UsuarioController = require('../controllers/usuario'); 
 
-router.get('/usuarios', UsuariosController.listarUsuarios); 
-router.post('/usuarios', UsuariosController.cadastrarUsuarios); 
-router.patch('/usuarios', UsuariosController.editarUsuarios); 
-router.delete('/usuarios', UsuariosController.apagarUsuarios); 
+router.get('/usuario', UsuarioController.listarUsuarios); 
+router.post('/usuario', UsuarioController.cadastrarUsuarios); 
+router.patch('/usuario', UsuarioController.editarUsuarios); 
+router.delete('/usuario', UsuarioController.apagarUsuarios); 
 
 
 module.exports = router;
