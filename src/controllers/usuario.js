@@ -65,6 +65,16 @@ module.exports = {
     }, 
     async editarUsuarios(request, response) {
         try {
+            const {tipo_usu, nome, email, senha, criado_em, telefone} = request.body;
+            const {id} = request.params;
+            const sql=`
+            UPDATE usuario SET
+            tipo_usu=?, nome=?, email=?, senha=?, criado_em=?, telefone=?
+            WHERE
+            usu_id=?;
+            `
+            const values={nome, email}
+
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Alteração no cadastro de usuário', 
