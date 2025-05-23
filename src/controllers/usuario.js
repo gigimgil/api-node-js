@@ -66,19 +66,35 @@ module.exports = {
     async editarUsuarios(request, response) {
         try {
             const {tipo_usu, nome, email, senha, criado_em, telefone} = request.body;
-            const {id} = request.params;
-            const sql=`
-            UPDATE usuario SET
-            tipo_usu=?, nome=?, email=?, senha=?, criado_em=?, telefone=?
-            WHERE
-            usu_id=?;
-            `
-            const values={nome, email}
+            const {id_usu} = request.params;
+            const sql = `
+                UPDATE usuario SET 
+                tipo_usu=?, nome=?, email=?, senha=?, criado_em=?, telefone=? 
+                WHERE 
+                id_usu = ?;
+            `;
+            const values=[tipo_usu, nome, email, senha, criado_em, telefone, id_usu]
+            const[result]= await db.query(sql, values);
+            
+            if (result.affectedRows===0){
+                return response.status(404).json({
+                    sucesso:false,
+                    mensagem:`Usuário ${id_usu}não encontrado`,
+                    dados:null
+                });
+            }
+
+            const dados={
+                id_usu,
+                nome,
+                email,
+                tipo_usu
+            }
 
             return response.status(200).json({
                 sucesso: true, 
-                mensagem: 'Alteração no cadastro de usuário', 
-                dados: null
+                mensagem: `Usuário ${id_usu} atualizado com sucesso`, 
+                dados
             });
         } catch (error) {
             return response.status(500).json({
