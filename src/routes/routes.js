@@ -1,12 +1,9 @@
 const express = require('express'); 
 const router = express.Router(); 
 
-const UsuarioController = require('../controllers/usuario'); 
+const RotasGiulia = require('./routes-giulia'); 
 
-router.get('/usuario', UsuarioController.listarUsuarios); 
-router.post('/usuario', UsuarioController.cadastrarUsuarios); 
-router.patch('/usuario/:id_usu', UsuarioController.editarUsuarios); 
-router.delete('/usuario/:id_usu', UsuarioController.apagarUsuarios); 
 
+router.use('/', RotasGiulia);
 
 module.exports = router;
